@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import logo from './components/logo.jpeg'
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 import Launches from "./components/Launches";
@@ -17,7 +18,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="container">
-          <h1 style={{ textAlign: "center", margin: "auto" }}>Space-X</h1>
+          {/* <h1 style={{ textAlign: "center", margin: "auto" }}>Space-X</h1> */}
+          <img src={logo} alt="spacex"
+            style={{display:'block', width:'15%', margin:'auto'}}
+          />
           <Route exact path="/">
             <Launches />
           </Route>
