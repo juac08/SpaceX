@@ -8,7 +8,7 @@ import Launch from "./components/Launch";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://space-x-junaid.herokuapp.com",
   cache: new InMemoryCache(),
 });
 
