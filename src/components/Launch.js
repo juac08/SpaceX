@@ -2,6 +2,8 @@ import React from 'react'
 import { useQuery, gql } from "@apollo/client";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import Loading from './Loading'
+
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
     launch(flight_number: $flight_number) {
@@ -27,7 +29,7 @@ const Launch = (props) => {
         variables: {flight_number},
       });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading/>;
     if (error) return <p>Error </p>;
     console.log(data)
     const {
