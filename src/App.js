@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
+import Launches from "./components/Launches";
+import Launch from "./components/Launch";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+const client = new ApolloClient({
+  uri: "http://localhost:5000/graphql",
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="container">
+          <h1 style={{ textAlign: "center", margin: "auto" }}>Space-X</h1>
+          <Route exact path="/">
+            <Launches />
+          </Route>
+          <Route exact path="/launch/:flight_number" component={Launch} />
+
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
